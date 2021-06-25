@@ -4,9 +4,6 @@ const path = require("path")
 const cookieParser = require('cookie-parser');
 
 
-
-
-
 //app init
 const app = express()
 
@@ -17,28 +14,7 @@ app.use(express.static('/public'));
 app.use(express.urlencoded({extended: true, limit: "50mb"}));
 app.use(cookieParser());
 
-// routing
-app.get('/', function(req, res) {
-    res.render("index3");
-});
 
-app.post("/post",(req, res) => {
-    console.log(req.body)
-    res.send("uploaded")
-})
-
-app.post("/post2",(req, res, next) => {
-    let category
-    const check = req.body.check;
-    if(check === "他" && req.body.check_ext){
-        console.log(req.body.check_ext)
-        category = req.body.check_ext
-    }
-    else{
-        category = check
-    }
-    res.send(category)
-})
 
 //　ポート番号3000番で起動
 app.listen(3000);

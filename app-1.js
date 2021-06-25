@@ -4,18 +4,6 @@ const path = require("path")
 const cookieParser = require('cookie-parser');
 
 
-const multer = require("multer")
-const storage = multer.diskStorage({
-        destination:  (req, file, cb)=> {
-            cb(null, 'res/')
-        },
-        filename:(req,file,cd)=>{
-            cd(null,file.originalname)
-        }
-    }
-)
-const upload  = multer({storage:storage})
-
 //app init
 const app = express()
 
@@ -26,14 +14,10 @@ app.use(express.static('/public'));
 app.use(express.urlencoded({extended: true, limit: "50mb"}));
 app.use(cookieParser());
 
-// routing
-app.get('/', function(req, res) {
-    res.render("index");
-});
+app.get("/",(req, res) => {
 
-app.post("/post",upload.single("file"),(req, res) => {
-    res.send("uploaded")
 })
+
 
 //　ポート番号3000番で起動
 app.listen(3000);
