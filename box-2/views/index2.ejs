@@ -1,0 +1,6 @@
+<form action="/c" method="post">
+    <%Object.keys(post).forEach(key=>{%>
+     <input type="hidden" name="<%-key%>" value="<%-post[key]%>">
+    <%})%>
+    <button type="submit">a</button>
+</form>
