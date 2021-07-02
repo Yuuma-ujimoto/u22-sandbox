@@ -13,4 +13,3 @@ const set_data = (data)=>{
 
 console.log(set_data(1))
 console.log(set_data([1,2]))
-console.log([null])
