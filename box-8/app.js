@@ -3,7 +3,14 @@ const express = require("express")
 const path = require("path")
 const cookieParser = require('cookie-parser');
 
-
+const mysql = require("mysql2")
+const connection = mysql.createConnection({
+    host:"localhost",
+    user:"root",
+    password:"",
+    port:"3306",
+    database:"u22"
+})
 //app init
 const app = express()
 
@@ -22,16 +29,14 @@ app.get("/",(req,res,next)=>{
     list.forEach(i=>{
         if(forEach_end_flag){return}
 
-        if(i===3){
-            console.log("flag")
-
-            forEach_end_flag = true
-            // returnでforEach抜けない
-            // -> 抜けるというよりはそのループ内のみで残りの処理を飛ばしてる感じ
-            // pythonのcontinueに近い？
-            return
-        }
-
+        connection.query("select * from a",(err, result) => {
+            if(err){
+                res.send("err")
+                forEach_end_flag = true
+                return
+            }
+            console.log(result)
+        })
         console.log(i)
     })
     if(forEach_end_flag){
